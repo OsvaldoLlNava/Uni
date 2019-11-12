@@ -2,6 +2,7 @@ import spotipy
 import spotipy.util as util
 import pprint
 import Track
+import SPYAbs
 
 username = '31hzoj7ckzb2dgudlq5zfbudzoia'
 scopes= 'playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-private user-read-email user-library-modify user-library-read user-follow-modify user-follow-read user-read-recently-played user-top-read '
@@ -11,7 +12,7 @@ clientSecret='087a97142beb44a18e818424ae2b444c'
 token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
 sp = spotipy.Spotify(auth=token)
 
-class Spoty():
+class Spoty(SPYAbs.SFYSERVICE):
     def Get_Track(self, nombre, artista):
         if token:
             sp.trace = False
@@ -66,7 +67,7 @@ class Spoty():
         else:
             print("Can't get token for", token)
 
-spotify = Spoty()
+# spotify = Spoty()
 
 #spotify.Get_Track_Id('rain', 'khan')
 # spotify.Show_Tracks()
