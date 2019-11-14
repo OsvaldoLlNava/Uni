@@ -4,15 +4,18 @@ import pprint
 import Track
 import SPYAbs
 
-username = '31hzoj7ckzb2dgudlq5zfbudzoia'
-scopes= 'playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-private user-read-email user-library-modify user-library-read user-follow-modify user-follow-read user-read-recently-played user-top-read '
-clientId='005e25714bad49ab93e394adeabaaa96'
-clientSecret='087a97142beb44a18e818424ae2b444c'
 
-token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
-sp = spotipy.Spotify(auth=token)
 
-class Spoty(SPYAbs.SFYSERVICE):
+class Spoty(object):
+    def __init__(self, user_name, Client_id, Client_Secret):
+        username = user_name
+        scopes= 'playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-private user-read-email user-library-modify user-library-read user-follow-modify user-follow-read user-read-recently-played user-top-read '
+        clientId= Client_id
+        clientSecret= Client_Secret
+
+        token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
+        sp = spotipy.Spotify(auth=token)
+
     def Get_Track(self, nombre, artista):
         if token:
             sp.trace = False
@@ -24,7 +27,7 @@ class Spoty(SPYAbs.SFYSERVICE):
                 artist = track['artists'][0]['name']
                 album = track['album']['name']
                 duration = track['duration_ms']
-            objectTrack = Track(id_track,name,artist,album,duration)
+            objectTrack = Track.Track(id_track,name,artist,album,duration)
             return objectTrack
         else:
             print("Can't get token for", token)
@@ -67,11 +70,24 @@ class Spoty(SPYAbs.SFYSERVICE):
         else:
             print("Can't get token for", token)
 
-# spotify = Spoty()
+username = '31hzoj7ckzb2dgudlq5zfbudzoia'
+clientId = '005e25714bad49ab93e394adeabaaa96'
+clientSecret = '087a97142beb44a18e818424ae2b444c'
 
-#spotify.Get_Track_Id('rain', 'khan')
+spotify = Spoty(username, clientId, clientSecret)
+
+spotify.Get_Track_Id('rain', 'khan')
 # spotify.Show_Tracks()
 # a = 'khan doblel'
 # n = 'rain'
 
 # spotify.Add_Tracks_With_Specific_Names(n,a)
+
+# id_track = '1234'
+# name = 'waa'
+# artist = 'atun'
+# album = 'diseñado'
+# duration = 'Todo el dia'
+# cancion = Track.Track(id_track,name,artist,album,duration)
+
+# print(cancion)

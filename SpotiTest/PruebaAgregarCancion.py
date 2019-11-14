@@ -1,11 +1,13 @@
 import spotipy
 import spotipy.util as util
 import pprint
+import LeerCredenciales
 
-username = '31hzoj7ckzb2dgudlq5zfbudzoia'
+credenciales = LeerCredenciales.Leer_Credenciales('Credenciales.txt')
+username = credenciales[0]
 scopes= 'playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-private user-read-email user-library-modify user-library-read user-follow-modify user-follow-read user-read-recently-played user-top-read '
-clientId='005e25714bad49ab93e394adeabaaa96'
-clientSecret='087a97142beb44a18e818424ae2b444c'
+clientId= credenciales[1]
+clientSecret=credenciales[2]
 
 token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
 sp = spotipy.Spotify(auth=token)

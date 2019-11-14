@@ -9,13 +9,10 @@ class Track():
 
     def __str__(self):
         if self.uri_track != None:
-            return str(f"El track es:"+"\n"+f"Name -> {self.name}"
-                       +"\n"+f"Artist -> {self.tags}"+
-                       "\n"+f"Album -> {self.album}"+"\n")
+            return  'El track es: {} \nArtista: {} \nAlbum: {}'.format(self.name,self.artist,self.album)
         else:
-            return str(f"El track es:" + "\n" + f"Name -> {self.name}"
-                       + "\n" + f"Artist -> {self.tags}" +
-                       "\n" + f"Album -> {self.album}" + "\n")
+            return 'El track es: {} \nArtista: {} \nAlbum: {}'.format(self.name,self.artist,self.album)
+
 
     def __eq__(self, trackS):
         if trackS.uri_track != self.uri_track:
@@ -48,3 +45,12 @@ class Track():
 
     def Get_Duration(self):
         return self.duration
+    
+id_track = '1234'
+name = 'waa'
+artist = 'chorizo'
+album = 'desayuno'
+duration = 'Todo el dia'
+cancion = Track(id_track,name,artist,album,duration)
+
+print(cancion)

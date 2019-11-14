@@ -1,5 +1,6 @@
 import sqlite3
 import DBAbs
+from Spoty import Track
 
 class DataBase(DBAbs.DBService):
     def Crear_Tabla ():
@@ -48,14 +49,13 @@ class DataBase(DBAbs.DBService):
 
 
         #Insert
-    def Agregar_Cancion(id_cancion, nombre, artista, album, duracion):
+    def Agregar_Cancion(Id_Cancion, Nombre_Cancion, Artista_Cancion, Album_Cancion, Duracion_Cancion):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
             print('Conectado')
-
             query = """INSERT INTO canciones VALUES 
-                    ('{}', '{}', '{}', '{}', '{}')""".format(id_cancion, nombre, artista, album, duracion)
+                    ('{}', '{}', '{}', '{}', '{}')""".format(Id_Cancion, Nombre_Cancion, Artista_Cancion ,Album_Cancion, Duracion_Cancion)
             resultado = cursor.execute(query)
             conexion.commit()
             print('Valor Insertado Correctamente', resultado)
