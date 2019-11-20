@@ -102,6 +102,9 @@ if __name__ == '__main__':
     spotify = Spoty(username, clientId, clientSecret)
 
     spotify.Search_Track('country roads', 'john', 'Poems')
+    res = spotify.Get_Track('country roads', 'john', 'Poems')
+    spotify.Delete_Track(res)
+    # spotify.Add_Track(res)
     # cancion = spotify.Get_Track('country roads', 'john', 'Poems')
     # print(cancion)
     # spotify.Show_Tracks()
