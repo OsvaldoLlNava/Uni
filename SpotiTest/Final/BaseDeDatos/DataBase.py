@@ -1,9 +1,9 @@
 import sqlite3
-import DBAbs
+from DBAbs import DBService
 from Spoty import Track
 
-class DataBase(DBAbs.DBService):
-    def Crear_Tabla ():
+class DataBase(DBService):
+    def Crear_Tabla (self):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
@@ -28,7 +28,7 @@ class DataBase(DBAbs.DBService):
                 conexion.close()
                 print('Conexión a SQLite cerrada\n')
 
-    def Drop_Table(nombre):
+    def Drop_Table(self, nombre):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
@@ -49,13 +49,13 @@ class DataBase(DBAbs.DBService):
 
 
         #Insert
-    def Agregar_Cancion(Id_Cancion, Nombre_Cancion, Artista_Cancion, Album_Cancion, Duracion_Cancion):
+    def saveTrack(self, Track):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
             print('Conectado')
             query = """INSERT INTO canciones VALUES 
-                    ('{}', '{}', '{}', '{}', '{}')""".format(Id_Cancion, Nombre_Cancion, Artista_Cancion ,Album_Cancion, Duracion_Cancion)
+                    ('{}', '{}', '{}', '{}', '{}')""".format(Track.uri_track, Track.name, Track.artist , Track.album, Track.duration)
             resultado = cursor.execute(query)
             conexion.commit()
             print('Valor Insertado Correctamente', resultado)
@@ -69,14 +69,9 @@ class DataBase(DBAbs.DBService):
                 conexion.close()
 
 
-    """ ID Text,
-                        Name Text,
-                        Artist Text,
-                        Album Text,
-                        Duration Text"""
     #Select
 
-    def Ver_Todo():
+    def showTracks(self):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
@@ -104,8 +99,10 @@ class DataBase(DBAbs.DBService):
 
     #Select Simgular
 
-    def Ver_Uno(id_elemento):
+    def Ver_Uno(self, Track):
         try:
+            #ID_elemento
+            id_elemento = Track.uri_track
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
             print('Conectado')
@@ -131,13 +128,13 @@ class DataBase(DBAbs.DBService):
 
     #Delete
 
-    def Eliminar_Elemento(Id_Elemento):
+    def DeleteTrack(self, Track):
         try:
             conexion = sqlite3.connect('Spotipy.db')
             cursor = conexion.cursor()
             print('Conectado')
 
-            query = "DELETE FROM Canciones WHERE id = {}".format(Id_Elemento)
+            query = "DELETE FROM Canciones WHERE id = {}".format(Track.uri_track)
             resultado = cursor.execute(query)
             conexion.commit()
             print('Valor Eliminado Correctamente', resultado)

@@ -2,17 +2,17 @@ from abc import ABC, abstractmethod
 
 class SFYSERVICE(ABC):
     @abstractmethod
-    def buscarNombre(self, trackName, artist):
+    def Get_Track(self, trackName, artist):
         pass
 
     @abstractmethod
-    def agregarCancion(self, trackName, artist):
+    def Add_Track(self):
         pass
 
     @abstractmethod
-    def borrarCancion(self, trackName, artist):
+    def Delete_Track(self):
         pass
 
     @abstractmethod
-    def mostrarCanciones(self):
+    def Show_Tracks(self):
         pass

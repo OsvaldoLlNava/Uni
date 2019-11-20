@@ -46,11 +46,11 @@ class Track():
     def Get_Duration(self):
         return self.duration
     
-id_track = '1234'
-name = 'waa'
-artist = 'chorizo'
-album = 'desayuno'
-duration = 'Todo el dia'
-cancion = Track(id_track,name,artist,album,duration)
+# id_track = '1234'
+# name = 'waa'
+# artist = 'chorizo'
+# album = 'desayuno'
+# duration = 'Todo el dia'
+# cancion = Track(id_track,name,artist,album,duration)
 
-print(cancion)
+# print(cancion)
