@@ -1,6 +1,6 @@
 import sqlite3
-from DBAbs import DBService
-from Spoty import Track
+from BaseDeDatos.DBAbs import DBService
+from Spoty.Track import Track
 
 class DataBase(DBService):
     def Crear_Tabla (self):

@@ -1,16 +1,9 @@
 import spotipy
 import spotipy.util as util
 import pprint
+# from Track import Track
 from Track import Track
 from SPYAbs import SFYSERVICE
-
-username = '31hzoj7ckzb2dgudlq5zfbudzoia'
-scopes= 'playlist-read-collaborative playlist-modify-private playlist-modify-public playlist-read-private user-modify-playback-state user-read-currently-playing user-read-playback-state user-read-private user-read-email user-library-modify user-library-read user-follow-modify user-follow-read user-read-recently-played user-top-read'
-clientId='005e25714bad49ab93e394adeabaaa96'
-clientSecret='087a97142beb44a18e818424ae2b444c'
-
-# token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
-# sp = spotipy.Spotify(auth=token)
 
 class Spoty(SFYSERVICE):
     def __init__(self, user_name, Client_id, Client_Secret):
@@ -84,7 +77,7 @@ class Spoty(SFYSERVICE):
     #     else:
     #         print("Can't get token for", self.token)
 
-    def Detele_Track(self, Track):
+    def Delete_Track(self, Track):
         if self.token:
             self.sp.tarce = False
             lista_tracks =[Track.uri_track]
@@ -101,13 +94,18 @@ class Spoty(SFYSERVICE):
         else:
             print("Can't get token for", self.token)
 
-spotify = Spoty(username, clientId, clientSecret)
+if __name__ == '__main__':
+    username = '31hzoj7ckzb2dgudlq5zfbudzoia'
+    clientId='005e25714bad49ab93e394adeabaaa96'
+    clientSecret='087a97142beb44a18e818424ae2b444c'
 
-# spotify.Search_Track('country roads', 'john', 'Poems')
-cancion = spotify.Get_Track('country roads', 'john', 'Poems')
-print(cancion)
-# spotify.Show_Tracks()
-# a = 'khan doblel'
-# n = 'rain'
+    spotify = Spoty(username, clientId, clientSecret)
 
-# spotify.Add_Tracks_With_Specific_Names(n,a)
+    spotify.Search_Track('country roads', 'john', 'Poems')
+    # cancion = spotify.Get_Track('country roads', 'john', 'Poems')
+    # print(cancion)
+    # spotify.Show_Tracks()
+    # a = 'khan doblel'
+    # n = 'rain'
+
+    # spotify.Add_Tracks_With_Specific_Names(n,a)
