@@ -14,7 +14,7 @@ class Spoty(SFYSERVICE):
         self.token = util.prompt_for_user_token(username,scope=scopes,client_id=clientId,client_secret=clientSecret,redirect_uri='http://google.com/')
         self.sp = spotipy.Spotify(auth=self.token)
 
-    def Get_Track(self, nombre, artista, album = ''):
+    def Get_Track(self, nombre, artista, album):
         if self.token:
             self.sp.trace = False
             results = self.sp.search(q='artist:' + artista + ' track:' +nombre + ' album:' + album)
@@ -29,10 +29,10 @@ class Spoty(SFYSERVICE):
         else:
             print("Can't get token for", self.token)
     
-    def Search_Track(self, nombre, artista, album = ''):
+    def Search_Track(self, nombre, artista):
         if self.token:
             self.sp.trace = False
-            results = self.sp.search(q= 'artist:' + artista + ' track:' +nombre + ' album:' + album)
+            results = self.sp.search(q= 'artist:' + artista + ' track:' +nombre)
             for track in results['tracks']['items']:
                 print()
                 print('ID = {}\nName = {}\nArtist = {}\nAlbum = {}'.format(track['id'], track['name'], track['artists'][0]['name'], track['album']['name']))
@@ -101,9 +101,13 @@ if __name__ == '__main__':
 
     spotify = Spoty(username, clientId, clientSecret)
 
-    spotify.Search_Track('country roads', 'john', 'Poems')
-    res = spotify.Get_Track('country roads', 'john', 'Poems')
-    spotify.Delete_Track(res)
+    # spotify.Search_Track('country roads', 'john', 'Poems')
+    spotify.Search_Track('acerca','ambkor')
+
+    
+    res = spotify.Get_Track('acerca','ambkor','aullidos')
+    print(res)
+    # spotify.Delete_Track(res)
     # spotify.Add_Track(res)
     # cancion = spotify.Get_Track('country roads', 'john', 'Poems')
     # print(cancion)

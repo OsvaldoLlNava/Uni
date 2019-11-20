@@ -1,5 +1,5 @@
 # import Syncro
-from Spoty.Track import Track
+from Final.Spoty.Track import Track
 import LeerCredenciales
 from Spoty import Spoty
 
@@ -12,8 +12,8 @@ if __name__ == '__main__':
     # # syn = Syncro.syncro((credenciales[0], credenciales[1], credenciales[2]))
 
     # # syn.Search_Track('rain', 'khan')
+    res = Track('123','vacio','vacio', 'vacio','vacio')
+    print(res)
 
-    sp = Spoty.Spoty(username, clientId, clientSecret)
-    sp.Search_Track('rain', 'khan')
-    can = Track('123','name','artist', 'album', '1.24')
-    print(can)
+    # sp = Spoty.Spoty(username, clientId, clientSecret)
+    # sp.Search_Track('country roads', 'john', 'Poems')

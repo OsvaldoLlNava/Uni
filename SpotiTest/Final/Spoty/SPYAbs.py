@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class SFYSERVICE(ABC):
     @abstractmethod
-    def Get_Track(self, trackName, artist):
+    def Get_Track(self):
         pass
 
     @abstractmethod

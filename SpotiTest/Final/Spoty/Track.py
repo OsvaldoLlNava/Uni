@@ -1,6 +1,6 @@
-class Track():
+class Track(object):
 
-    def __init__(self,uri_track, name, artist, album, duration):
+    def __init__(self, uri_track, name, artist, album, duration):
         self.uri_track = uri_track
         self.name = name
         self.artist = artist
