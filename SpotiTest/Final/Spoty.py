@@ -32,7 +32,7 @@ class Spoty(SFYSERVICE):
     def Search_Track(self, nombre, artista):
         if self.token:
             self.sp.trace = False
-            results = self.sp.search(q= 'artist:' + artista + ' track:' +nombre)
+            results = self.sp.search(q= 'artist:' + artista + ' track:' +nombre, limit = 15)
             for track in results['tracks']['items']:
                 print()
                 print('ID = {}\nName = {}\nArtist = {}\nAlbum = {}'.format(track['id'], track['name'], track['artists'][0]['name'], track['album']['name']))
@@ -82,15 +82,17 @@ class Spoty(SFYSERVICE):
             self.sp.tarce = False
             lista_tracks =[Track.uri_track]
             self.sp.current_user_saved_tracks_delete(lista_tracks)
-            print('La cancion \n Nombre: {} \nArtista: {}\nFue eliminada'.format(Track.name, Track.artist))
+            print('La cancion \nNombre: {} \nArtista: {}\nFue eliminada'.format(Track.name, Track.artist))
     
     def Show_Tracks(self):
         if self.token:
             self.sp.trace = False
             results = self.sp.current_user_saved_tracks()
+            print('-------------------------')
             for item in results['items']:
                 track = item['track']
-                print(track['name'] + ' - ' + track['artists'][0]['name'])
+                print('Nombre: {}\nArtista: {}\nAlbum: {}'.format(track['name'],track['artists'][0]['name'],track['album']['name']))
+                print('-------------------------')
         else:
             print("Can't get token for", self.token)
 

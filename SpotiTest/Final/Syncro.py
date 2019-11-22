@@ -1,6 +1,6 @@
-from BaseDeDatos.DataBase import DataBase
-from Spoty.Spoty import Spoty
-from Spoty.Track import Track
+from DataBase import DataBase
+from Spoty import Spoty
+from Track import Track
 
 class syncro ():
 
@@ -22,16 +22,25 @@ class syncro ():
         self.sp.Delete_Track(Track)
         self.bd.DeleteTrack(Track)
     
-    def Show_Tracks(self, opcion):
-        if opcion == 1:
-            self.sp.Show_Tracks()
-        elif opcion == 2:
-            self.bd.showTracks()
-        else:
-            return 0
+    def Show_Tracks(self):
+        valido = False
+        while(valido == False):
+            opcion = int(input('Que lista quieres ver?\n1) Spotify\n2) Base de Datos\n'))
+            if opcion == 1:
+                self.sp.Show_Tracks()
+                valido = True
+            elif opcion == 2:
+                self.bd.showTracks()
+                valido = True
+            else:
+                print('opcion invalida')
 
-    def Search_Track(self, nombre, artista, album=''):
-        self.sp.Search_Track(nombre, artista, album)
+    def Search_Track(self, nombre, artista):
+        self.sp.Search_Track(nombre, artista)
+    
+    def Get_Track(self, nombre, artista, album):
+        Track = self.sp.Get_Track(nombre, artista, album)
+        return Track
         
 
     

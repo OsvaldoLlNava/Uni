@@ -1,6 +1,6 @@
 import sqlite3
-from BaseDeDatos.DBAbs import DBService
-from Spoty.Track import Track
+from DBAbs import DBService
+from Track import Track
 
 class DataBase(DBService):
     def Crear_Tabla (self):
@@ -86,6 +86,7 @@ class DataBase(DBService):
 
             for row in rows:
                 print('Id: {}\nNombre de la Cancion: {}\nArtista: {}\nAlbum: {}\nDuracion: {}'.format(*row))
+                print('----------------------------------------')
             
             cursor.close()
 
@@ -107,7 +108,7 @@ class DataBase(DBService):
             cursor = conexion.cursor()
             print('Conectado')
 
-            query = 'SELECT * FROM canciones where Id = {};'.format(id_elemento)
+            query = "SELECT * FROM canciones where Id = '{}';".format(id_elemento)
             cursor.execute(query)
             rows = cursor.fetchall()
 
@@ -134,12 +135,38 @@ class DataBase(DBService):
             cursor = conexion.cursor()
             print('Conectado')
 
-            query = "DELETE FROM Canciones WHERE id = {}".format(Track.uri_track)
+            query = "DELETE FROM Canciones WHERE id = '{}'".format(Track.uri_track)
             resultado = cursor.execute(query)
             conexion.commit()
             print('Valor Eliminado Correctamente', resultado)
             cursor.close()
 
+        except sqlite3.Error as error:
+            print('Error con la conexion',error)
+
+        finally:
+            if(conexion):
+                conexion.close()
+        
+    
+    def DarCanciones(self):
+        try:
+            conexion = sqlite3.connect('Spotipy.db')
+            cursor = conexion.cursor()
+            print('Conectado')
+
+            query = 'SELECT name, artist, album FROM canciones;'
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            print('Total de registros: ', len(rows))
+
+            print('------------Registros-------------')
+            lista =[]
+            for row in rows:
+                lista.append({'name':row[0], 'artist':row[1], 'artist':row[2]})
+            
+            cursor.close()
+            return lista
         except sqlite3.Error as error:
             print('Error con la conexion',error)
 
@@ -168,3 +195,6 @@ class DataBase(DBService):
     #     finally:
     #         if(conexion):
     #             conexion.close()
+
+db = DataBase()
+db.showTracks()
